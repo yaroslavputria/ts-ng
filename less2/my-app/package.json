@@ -1,0 +1,30 @@
+{
+  "name": "less1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "tsc && concurrently \"tsc -w\" \"json-server db.json --static . \" "
+  },
+  "dependencies": {
+    "http-server": "^0.10.0",
+    "systemjs": "^0.20.13",
+    "@angular/common": "^4.1.0",
+    "@angular/compiler": "^4.1.0",
+    "@angular/core": "^4.1.0",
+    "@angular/platform-browser": "^4.1.0",
+    "@angular/platform-browser-dynamic": "^4.1.0",
+    "core-js": "^2.4.1",
+    "rxjs": "^5.3.0",
+    "systemjs": "^0.20.12",
+    "zone.js": "^0.8.9"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.14",
+    "concurrently": "^3.4.0",
+    "json-server": "^0.10.1",
+    "typescript": "^2.3.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
