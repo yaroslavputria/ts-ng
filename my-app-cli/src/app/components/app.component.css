@@ -1,0 +1,12 @@
+.hero {
+    cursor: pointer;
+}
+
+.selected {
+    color: blue;
+}
+
+.bordered {
+    border: 1px solid blue;
+    padding: 20px;
+}
