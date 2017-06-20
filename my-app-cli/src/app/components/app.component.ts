@@ -36,7 +36,6 @@ export class AppComponent {
     }
 
     num: number = 23;
-
     updateNum(e) {
         this.num = parseInt(e);
     }

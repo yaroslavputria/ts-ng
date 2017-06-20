@@ -1,13 +1,6 @@
 <h2>{{title}}</h2>
 
-<div *ngIf="selectedHero">
-    <h3>{{selectedHero.name}} is the best hero!</h3>
-
-    <div>
-        <label>Change hero name: </label>
-        <input [(ngModel)]="selectedHero.name" placeholder="name">
-    </div>
-</div>
+<hero-detail  *ngIf="selectedHero" [hero]="selectedHero"></hero-detail>
 
 <input type="checkbox" id="showheroes" [(ngModel)]="showheroes">
 <label for="showheroes">Show Heroes</label>
