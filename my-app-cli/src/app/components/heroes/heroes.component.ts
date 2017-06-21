@@ -10,7 +10,7 @@ import { HeroService } from '../../services/hero.service';
 })
 export class HeroesCmp implements OnInit {
     heroes: Hero[];
-    constructor(private heroService: HeroService, private router: Router,) {
+    constructor(private heroService: HeroService, private router: Router) {
         heroService.getHeroes()
             .then(heroes => {
                 this.heroes = heroes;
