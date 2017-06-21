@@ -14,8 +14,8 @@
 </ul>
 
 <div class="bordered">
-    <b>@Input, @Output, EventEmitter examples:</b>
+    <b>@Input, @Output, @Attribute and EventEmitter examples:</b>
     <p>{{num}}</p>
     <input type="text"[(ngModel)]="num">
-    <tmp-cmp [startedNumber]="num" (triggeredupdate)="updateNum($event)"></tmp-cmp>
+    <tmp-cmp [startedNumber]="num" (triggeredupdate)="updateNum($event)" type="it's came from attribute 'type' of this component (<tmp-cmp>) using @Atribute decorator"></tmp-cmp>
 </div>

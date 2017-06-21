@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms'
+import { FormsModule }   from '@angular/forms';
+
+import { HeroService } from './services/hero.service';
+
 
 import { AppComponent } from './components/app.component';
 import { HeroDetailCmp } from './components/hero-detail/hero-datail.component';
@@ -18,7 +21,7 @@ import { TmpCmp } from './components/tmp/tmp.cmp';
         BrowserModule,
         FormsModule
     ],
-    providers: [],
+    providers: [HeroService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

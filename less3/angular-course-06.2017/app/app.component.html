@@ -1,0 +1,23 @@
+<h1>Hello {{name}}</h1>
+
+<div [textContent]="text">
+    <!--Span was clicked!-->
+</div>
+<span (click)="updateDiv($event)">Click me!</span>
+
+<a-comp (childClicked)="processOutput($event)" title="i am just title" [someVeryLongEasyToUnderstandBinding]="'came from parent'"></a-comp>
+
+<h1>
+    Number input/output
+</h1>
+
+<input (change)="changed($event)">
+<span>B component changed to: {{result}}</span>
+<b-comp [num]="updated" (change)="updateNumber($event)"></b-comp>
+
+
+<!--
+<input>
+<span>updated value</span>
+
+<a-comp></a-comp>-->

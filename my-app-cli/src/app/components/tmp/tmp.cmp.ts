@@ -1,10 +1,15 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, Attribute } from '@angular/core';
 @Component({
     selector: 'tmp-cmp',
-    template: `<button (click)="emitChange()">Click on me to emit number update!</button>`
+    template: `<button (click)="emitChange()">Click on me to emit number update!</button> <br/>
+    <p>{{type}}</p>`
 })
 export class TmpCmp {
     _n: number;
+
+    constructor(@Attribute('type') public type: string) {
+
+    }
     @Input('startedNumber') set n(value) {
         this._n = value;
     }
