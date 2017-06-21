@@ -1,19 +1,14 @@
 <h2>{{title}}</h2>
 
-<hero-detail  *ngIf="selectedHero" [hero]="selectedHero"></hero-detail>
+<a href="heroes">Heroes</a><br>
 
-<input type="checkbox" id="showheroes" [(ngModel)]="showheroes">
-<label for="showheroes">Show Heroes</label>
+<router-outlet></router-outlet>
 
-<ul *ngIf="showheroes">
-    Select the best hero:
-    <li class="hero" *ngFor="let hero of heroes"
-    [class.selected]="hero === selectedHero"
-    (click)=onSelect(hero)>
-    <b>{{hero.id}}</b> {{hero.name}}</li>
-</ul>
+<br>
 
-<div class="bordered">
+<input type="checkbox" id="show-examples" [(ngModel)]="showExamples">
+<label for="show-examples">@Input, @Output, @Attribute and EventEmitter examples</label>
+<div class="bordered" *ngIf="showExamples">
     <b>@Input, @Output, @Attribute and EventEmitter examples:</b>
     <p>{{num}}</p>
     <input type="text"[(ngModel)]="num">
