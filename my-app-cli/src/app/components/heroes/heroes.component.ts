@@ -5,9 +5,11 @@ import { HeroService } from '../../services/hero.service';
 
 @Component({
     selector: 'heroes',
-    templateUrl: './heroes.component.html'
+    templateUrl: './heroes.component.html',
+    styles: [`.hero{cursor: pointer;}`]
 })
 export class HeroesCmp implements OnInit {
+    heroes: Hero[];
     constructor(private heroService: HeroService, private router: Router,) {
         heroService.getHeroes()
             .then(heroes => {
@@ -19,13 +21,8 @@ export class HeroesCmp implements OnInit {
     ngOnInit() {
         //this.heroes = this.heroService.getHeroes();
     }
-    heroes: Hero[];
-    selectedHero: Hero;
-
-
     onSelect(hero: Hero): void {
-        this.selectedHero = hero;
-        this.router.navigate(['/hero', this.selectedHero.id]);
+        this.router.navigate(['/hero', hero.id]);
     }
 
 }
