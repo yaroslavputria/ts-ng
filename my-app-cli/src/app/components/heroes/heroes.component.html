@@ -1,0 +1,12 @@
+<input type="checkbox" id="showheroes" [(ngModel)]="showheroes">
+<label for="showheroes">Show Heroes</label>
+
+<ul *ngIf="showheroes">
+    Select the best hero:
+    <li class="hero" *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)=onSelect(hero)>
+    <b>{{hero.id}}</b> {{hero.name}}</li>
+</ul>
+
+<!-- <hero-detail  *ngIf="selectedHero" [hero]="selectedHero"></hero-detail> -->
