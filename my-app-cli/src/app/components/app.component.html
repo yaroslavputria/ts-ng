@@ -1,7 +1,8 @@
 <h2>{{title}}</h2>
 
-<a routerLink="/heroes" routerLinkActive="active">Heroes</a><br>
-
+<a routerLink="/heroes" routerLinkActive="active" class="route-link">Heroes</a>
+<a routerLink="/github-users-info" routerLinkActive="active" class="route-link">Github api, check it out!</a><br>
+<br><br><br>
 <router-outlet></router-outlet>
 
 <br>
@@ -12,5 +13,5 @@
     <b>@Input, @Output, @Attribute and EventEmitter examples:</b>
     <p>{{num}}</p>
     <input type="text"[(ngModel)]="num">
-    <tmp-cmp [startedNumber]="num" (triggeredupdate)="updateNum($event)" type="it's came from attribute 'type' of this component (<tmp-cmp>) using @Atribute decorator"></tmp-cmp>
+    <tmp-cmp [startedNumber]="num" (triggeredupdate)="updateNum($event)" type="it's came from attribute 'type' of this component (<tmp-cmp>) using @Attribute decorator"></tmp-cmp>
 </div>

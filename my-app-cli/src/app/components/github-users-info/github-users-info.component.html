@@ -1,0 +1,9 @@
+<label for="user-name">Github username: </label><input id="user-name" type="text" [(ngModel)]="userName">
+<button (click)="updateRepos()">Fetch repositories names</button><br>
+
+<ul *ngIf="repos"><b>All {{userName}}'s repositories:</b>
+    <li *ngFor="let repo of repos">{{repo.name}}</li>
+</ul>
+
+
+<button (click)="back()">back</button>

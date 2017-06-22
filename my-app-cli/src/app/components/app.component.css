@@ -1,5 +1,11 @@
-
-
+.route-link {
+    text-decoration: none;
+    border: 1px solid red;
+    background-color: yellow;
+    padding: 3px;
+    border-radius: 3px;
+    margin: 5px;
+}
 .bordered {
     border: 1px solid blue;
     padding: 20px;
