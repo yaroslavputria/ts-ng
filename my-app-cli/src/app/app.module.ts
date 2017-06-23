@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';//includes CommonModule
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -16,6 +16,8 @@ import { TmpCmp } from './components/tmp/tmp.cmp';
 
 import { Routes } from './routes';
 
+import { TasksModule } from './taskModule/tasks.module';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -28,7 +30,8 @@ import { Routes } from './routes';
         BrowserModule,
         FormsModule,
         Routes,
-        HttpModule
+        HttpModule,
+        TasksModule
     ],
     providers: [
         HeroService,

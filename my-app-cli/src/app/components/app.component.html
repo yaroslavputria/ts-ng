@@ -15,3 +15,5 @@
     <input type="text"[(ngModel)]="num">
     <tmp-cmp [startedNumber]="num" (triggeredupdate)="updateNum($event)" type="it's came from attribute 'type' of this component (<tmp-cmp>) using @Attribute decorator"></tmp-cmp>
 </div>
+
+<task-list [tasks]="tasks"></task-list>

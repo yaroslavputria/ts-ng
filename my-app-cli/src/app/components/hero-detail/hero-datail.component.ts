@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Hero } from '../../interfaces/hero';
 import { HeroService } from '../../services/hero.service';
 
@@ -10,7 +10,8 @@ import 'rxjs/add/operator/switchMap';
 @Component({
     selector: 'hero-detail',
     templateUrl: './hero-datail.component.html',
-    interpolation: ['$', '#']
+    interpolation: ['$', '#'],
+    encapsulation: ViewEncapsulation.Emulated
 })
 export class HeroDetailCmp implements OnInit {
     @Input()hero: Hero;
