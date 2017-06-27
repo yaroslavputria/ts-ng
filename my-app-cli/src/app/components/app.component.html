@@ -1,19 +1,30 @@
-<h2>{{title}}</h2>
+<main>
+    <h2>{{title}}</h2>
 
-<a routerLink="/heroes" routerLinkActive="active" class="route-link">Heroes</a>
-<a routerLink="/github-users-info" routerLinkActive="active" class="route-link">Github api, check it out!</a><br>
-<br><br><br>
-<router-outlet></router-outlet>
+    <a routerLink="/heroes" routerLinkActive="active" class="route-link">Heroes</a>
+    <a routerLink="/github-users-info" routerLinkActive="active" class="route-link">Github api, check it out!</a><br>
+    <br><br><br>
+    <router-outlet></router-outlet>
 
-<br>
+    <br>
 
-<input type="checkbox" id="show-examples" [(ngModel)]="showExamples">
-<label for="show-examples">@Input, @Output, @Attribute and EventEmitter examples</label>
-<div class="bordered" *ngIf="showExamples">
-    <b>@Input, @Output, @Attribute and EventEmitter examples:</b>
-    <p>{{num}}</p>
-    <input type="text"[(ngModel)]="num">
-    <tmp-cmp [startedNumber]="num" (triggeredupdate)="updateNum($event)" type="it's came from attribute 'type' of this component (<tmp-cmp>) using @Attribute decorator"></tmp-cmp>
-</div>
+    <input type="checkbox" id="show-examples" [(ngModel)]="showExamples">
+    <label for="show-examples">@Input, @Output, @Attribute and EventEmitter examples</label>
+    <div class="bordered" *ngIf="showExamples">
+        <b>@Input, @Output, @Attribute and EventEmitter examples:</b>
+        <p>{{num}}</p>
+        <input type="text"[(ngModel)]="num">
+        <tmp-cmp [startedNumber]="num"
+                (triggeredupdate)="updateNum($event)"
+                type="it's came from attribute 'type' of this component (<tmp-cmp>) using @Attribute decorator"
+                [(size)]="fontSizePx"></tmp-cmp><!-- [size]="fontSizePx" (sizeChange)="fontSizePx=$event" -->
+        <div [style.font-size.px]="fontSizePx">Resizable Text</div>
+        <input type="{{inputType}}" value="{{mess}}">
+    </div>
 
-<task-list [tasks]="tasks"></task-list>
+    <task-list [tasks]="tasks"></task-list>
+
+    <p><span *ngFor="let char of iterableString">{{char}}</span></p>
+
+
+</main>

@@ -1,10 +1,24 @@
-const generateUniqId = (function(){
+const generateUniqId1 = (function(){
     let id = 0;
     function gen() {
         return id++;
     }
     return gen;
 })();
+
+
+function* idMaker() {
+    let index = 0;
+    while(true)
+    yield index++;
+}
+const generateUniqId = (function(){
+    let gen = idMaker();
+    return function() {
+        gen.next().value;
+    };
+})();
+
 
 interface CustomerInterface extends Object {
     name: string;

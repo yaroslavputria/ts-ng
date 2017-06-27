@@ -16,7 +16,7 @@ import { TmpCmp } from './components/tmp/tmp.cmp';
 
 import { Routes } from './routes';
 
-import { TasksModule } from './taskModule/tasks.module';
+import { TasksModule } from './modules/taskModule/tasks.module';
 
 @NgModule({
     declarations: [

@@ -3,6 +3,8 @@ import { Hero } from '../interfaces/hero';
 
 import { HeroService } from '../services/hero.service';
 
+import { Task } from '../modules/taskModule/task';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -23,9 +25,15 @@ export class AppComponent {
     num: number = 23;
     updateNum(e) {
         this.num = parseInt(e);
+        this.inputType = 'text';
+        this.mess = 'now I am text input :)'
     }
 
-    tasks = [
+    fontSizePx: number = 30;
+
+    iterableString = new String('I am iterable string written char by char :)');
+
+    tasks: Task[] = [
         {
             taskName: 'Initial task',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim quis dolore reiciendis facilis voluptatem consequuntur excepturi necessitatibus laudantium obcaecati reprehenderit quibusdam hic, aut illo possimus, modi sapiente sequi minima?'
@@ -43,4 +51,8 @@ export class AppComponent {
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere vel laudantium aliquam eos nostrum soluta quaerat incidunt mollitia, iusto, assumenda optio in unde hic esse rerum, nam quod nesciunt at.'
         }
     ];
+
+    inputType = 'checkbox';
+    mess='';
+    //iterableString = 'I am not iterable string :(';
 }
