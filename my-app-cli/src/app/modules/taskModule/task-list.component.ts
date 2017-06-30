@@ -5,7 +5,9 @@ import { Task } from './task';
     selector: 'task-list',
     template: `
         <div *ngIf="taskList">
-            <task *ngFor="let task of taskList; let i=index" [task]="task" (deletetask)="deleteTaskFromList(i)"></task>
+            <task *ngFor="let task of taskList; let i=index" [task]="task" (deletetask)="deleteTaskFromList(i)">
+                <my-header-details [details]="'Task index: '+i"></my-header-details>
+            </task>
         </div>`,
 })
 export class TaskListComponent {
