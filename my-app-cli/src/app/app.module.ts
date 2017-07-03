@@ -17,6 +17,7 @@ import { TmpCmp } from './components/tmp/tmp.cmp';
 import { Routes } from './routes';
 
 import { TasksModule } from './modules/taskModule/tasks.module';
+import { CarModule } from './modules/carModule/car.module';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { TasksModule } from './modules/taskModule/tasks.module';
         FormsModule,
         Routes,
         HttpModule,
-        TasksModule
+        TasksModule,
+        CarModule
     ],
     providers: [
         HeroService,
