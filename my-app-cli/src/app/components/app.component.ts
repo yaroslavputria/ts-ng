@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ReflectiveInjector } from '@angular/core';
 import { Hero } from '../interfaces/hero';
 
 import { HeroService } from '../services/hero.service';
@@ -32,7 +32,7 @@ export class AppComponent {
     fontSizePx: number = 30;
 
     iterableString = new String('I am iterable string written char by char :)');
-
+    //nonIterableString = 'I am not iterable string :(';
     tasks: Task[] = [
         {
             taskName: 'Initial task',
@@ -53,6 +53,6 @@ export class AppComponent {
     ];
 
     inputType = 'checkbox';
-    mess='';
-    //iterableString = 'I am not iterable string :(';
+    mess = '';
+
 }

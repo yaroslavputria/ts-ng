@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Task } from './task';
 
 @Component({
@@ -8,5 +8,8 @@ import { Task } from './task';
     styles: [``]
 })
 export class HeaderDetailsCount {
-    @Input()count: number;
+    @Input()count: number;//we change it from parent cmp by @ViewChild directly (see task.component)
+    ngOnChanges(r) {
+        this.count = r;//and can call this method from parent cmp by @ViewChild too (see task.component)
+    }
 }

@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter, ViewChildren, AfterContentChecked } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ContentChildren, AfterContentChecked, ViewChild } from '@angular/core';
 import { Task } from './task';
 import { MyHeaderDetails } from './my-header-details.component';
+import { HeaderDetailsCount } from './header-details-count.component';
 
 @Component({
     selector: 'task',
@@ -8,7 +9,7 @@ import { MyHeaderDetails } from './my-header-details.component';
         <div class="task" (click)="toggleDescription()">
             <b class="task-header">{{task.taskName}}</b><ng-content selector="my-header-details"></ng-content> <span class="delete-task" (click)="deleteTask()">x</span>
             <p *ngIf="showDescription"><b>Task description: </b>{{task.description}}</p>
-            <br/> <header-details-count [count]="count"></header-details-count>
+            <br/> <header-details-count></header-details-count>
         </div>`,
     styles: [`
     .task-header {
@@ -36,10 +37,18 @@ export class TaskComponent implements AfterContentChecked {
     deleteTask(): void {
         this.deleteTaskEE.emit();
     }
-    @ViewChildren(MyHeaderDetails) headerDetailsCmps;
+    @ContentChildren(MyHeaderDetails) headerDetailsCmps;
     count: number;
+    @ViewChild(HeaderDetailsCount) headerDetailsCountCmp;
     ngAfterContentChecked() {
         this.count = this.headerDetailsCmps.length;
+    }
+    ngAfterViewInit() {
+        setTimeout(() => {
+            //this.headerDetailsCountCmp.count = this.count;
+            this.headerDetailsCountCmp.ngOnChanges(this.count);
+        }, 0);
+
     }
 
 }
