@@ -1,4 +1,4 @@
-import { ReflectiveInjector, InjectionToken } from '@angular/core';
+import { ReflectiveInjector, InjectionToken, Injectable, Injector } from '@angular/core';
 import { Engine } from './engine.service';
 import { Tires } from './tires.service';
 import { Doors } from './doors.service';
@@ -8,16 +8,20 @@ import { CarModule } from './car.module';
 export const engineStringToken = 'Engine';
 export const TIRES_TOKEN = new InjectionToken('Tires');
 
-const config = true;
+const config = 'config';
 
-export const ENGINE_CONFIG = new InjectionToken('ENGINE_CONFIG');
-export const TIRES_CONFIG = new InjectionToken('TIRES_CONFIG');
+import { ENGINE_CONFIG } from './car.module';
+import { TIRES_CONFIG } from './car.module';
 
+@Injectable()
 export class CarService {
     engine;
     tires;
     doors;
     _injector = null;
+    constructor(public root: Injector) {
+
+    }
     get injector() {
         if (this._injector === null) {
             return this.initInjector();
@@ -30,14 +34,12 @@ export class CarService {
         this._injector = ReflectiveInjector.resolveAndCreate([
             //Engine,// the same: { provide: Engine, useClass: Engine },
             //{ provide: engineStringToken, useClass: Engine },
-            { provide: ENGINE_CONFIG, useValue: CarModule },
-            { provide: TIRES_CONFIG, useExisting: ENGINE_CONFIG },
             { provide: engineStringToken, useFactory: (ENGINE_CONFIG) => {
-                return (ENGINE_CONFIG !== null) ? new Engine : {name: 'no engine'};
+                return (ENGINE_CONFIG) ? new Engine : {name: 'no engine'};
             }, deps: [ENGINE_CONFIG] },
             //Tires,// the same: { provide: Tires, useClass: Tires },
             { provide: TIRES_TOKEN, useFactory: (TIRES_CONFIG) => {
-                return (TIRES_CONFIG !== null) ? new Tires : {name: 'no tires'};
+                return (TIRES_CONFIG) ? new Tires : {name: 'no tires'};
             }, deps: [TIRES_CONFIG] },
             Doors,// the same: { provide: Doors, useClass: Doors }
             { provide: 'tmpToken', useValue: {bla: 'there can be anything'} },
@@ -50,7 +52,7 @@ export class CarService {
                 },
                 deps: [config]
             }
-        ]);
+        ], this.root);
         return this._injector;
     }
 }
