@@ -10,8 +10,8 @@ export const TIRES_TOKEN = new InjectionToken('Tires');
 
 const config = 'config';
 
-import { ENGINE_CONFIG } from './car.module';
-import { TIRES_CONFIG } from './car.module';
+import { ENGINE_CONFIG } from './config';
+import { TIRES_CONFIG } from './config';
 
 @Injectable()
 export class CarService {
@@ -36,7 +36,7 @@ export class CarService {
             //{ provide: engineStringToken, useClass: Engine },
             { provide: engineStringToken, useFactory: (ENGINE_CONFIG) => {
                 return (ENGINE_CONFIG) ? new Engine : {name: 'no engine'};
-            }, deps: [ENGINE_CONFIG] },
+            }, deps: [ENGINE_CONFIG] },//ENGINE_CONFIG and TIRES_CONFIG were inherited from root module (see car.module.ts)
             //Tires,// the same: { provide: Tires, useClass: Tires },
             { provide: TIRES_TOKEN, useFactory: (TIRES_CONFIG) => {
                 return (TIRES_CONFIG) ? new Tires : {name: 'no tires'};
@@ -48,7 +48,7 @@ export class CarService {
             {
                 provide: 'byFactory',
                 useFactory: (config) => {
-                    return (config) ? new String('something for true config') : new String('something for false config');//cache and return the same object
+                    return (config) ? new String('something for true config') : new String('something for false config');//returns the same object (caches it)
                 },
                 deps: [config]
             }
