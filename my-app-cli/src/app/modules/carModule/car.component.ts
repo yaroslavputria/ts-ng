@@ -28,5 +28,14 @@ export class CarComponent {
         console.log(engine.name);
         console.log(tires.name);
         console.log(doors.name);
+
+        const fromTmpTokenUseValue = injector.get('tmpToken');
+        console.log(fromTmpTokenUseValue.bla);
+
+        const fromTmpTokenUseFactory = injector.get('byFactory');
+        console.log(fromTmpTokenUseFactory);
+
+        const fromUseExistingDoors = injector.get('useExistingDoors');
+        console.log(fromUseExistingDoors === doors);//true
     }
 }
