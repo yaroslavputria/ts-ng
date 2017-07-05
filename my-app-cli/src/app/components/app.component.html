@@ -28,5 +28,12 @@
 
     <car-cmp></car-cmp>
 
+    <div style="border: 1px solid green; padding: 20px">
+        <h4>lifecycle hooks root cmp</h4>
+        <a-cmp></a-cmp>
+    </div>
 
 </main>
+
+<input #bla (input)="false" value="template reference variable and its dynamic update" style="width: 100%"> {{bla.value}}
+<!-- <input #bla [(ngModel)]="blabla" style="width: 100%"> {{bla.value}} -->

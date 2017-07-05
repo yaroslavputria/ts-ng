@@ -8,9 +8,12 @@ import { config } from './config';
 
 import { CarService } from './car.service';
 
+import { BlaCmp } from './car.component';
+
 @NgModule({
     declarations: [
-        CarComponent
+        CarComponent,
+        BlaCmp
     ],
     imports: [
         CommonModule
@@ -21,7 +24,9 @@ import { CarService } from './car.service';
     providers: [
         CarService,//token the same as service class - its equal { provide: CarSrvice, useClass: CarService }
         { provide: ENGINE_CONFIG, useValue: config },
-        { provide: TIRES_CONFIG, useExisting: ENGINE_CONFIG }
+        { provide: TIRES_CONFIG, useExisting: ENGINE_CONFIG },
+
+        { provide: 'a', useValue: 'a provider from root'}
     ],
     bootstrap: [  ]
 })

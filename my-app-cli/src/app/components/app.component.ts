@@ -55,4 +55,6 @@ export class AppComponent {
     inputType = 'checkbox';
     mess = '';
 
+    // blabla = 'blabalasd';
+
 }

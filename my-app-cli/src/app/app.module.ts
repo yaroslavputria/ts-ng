@@ -18,6 +18,7 @@ import { Routes } from './routes';
 
 import { TasksModule } from './modules/taskModule/tasks.module';
 import { CarModule } from './modules/carModule/car.module';
+import { LifecycleModule } from './modules/lifecycleHooksModule/lifecycle.module';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { CarModule } from './modules/carModule/car.module';
         Routes,
         HttpModule,
         TasksModule,
-        CarModule
+        CarModule,
+        LifecycleModule
     ],
     providers: [
         HeroService,
@@ -41,4 +43,4 @@ import { CarModule } from './modules/carModule/car.module';
     ],
     bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}

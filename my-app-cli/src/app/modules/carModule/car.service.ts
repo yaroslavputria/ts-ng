@@ -1,4 +1,4 @@
-import { ReflectiveInjector, InjectionToken, Injectable, Injector } from '@angular/core';
+import { ReflectiveInjector, InjectionToken, Injectable, Injector, Inject } from '@angular/core';
 import { Engine } from './engine.service';
 import { Tires } from './tires.service';
 import { Doors } from './doors.service';
@@ -19,8 +19,9 @@ export class CarService {
     tires;
     doors;
     _injector = null;
-    constructor(public root: Injector) {
-
+    //root;
+    constructor(public root: Injector) {/*or constructor(@Inject(Injector) root) {
+        this.root = root;*/
     }
     get injector() {
         if (this._injector === null) {
@@ -42,6 +43,9 @@ export class CarService {
                 return (TIRES_CONFIG) ? new Tires : {name: 'no tires'};
             }, deps: [TIRES_CONFIG] },
             Doors,// the same: { provide: Doors, useClass: Doors }
+
+            //======================
+
             { provide: 'tmpToken', useValue: {bla: 'there can be anything'} },
             { provide: config, useValue: true },
             { provide: 'useExistingDoors', useExisting: Doors },
@@ -50,9 +54,11 @@ export class CarService {
                 useFactory: (config) => {
                     return (config) ? new String('something for true config') : new String('something for false config');//returns the same object (caches it)
                 },
-                deps: [config]
-            }
-        ], this.root);
+                deps: [config]//dependency (previosly registred provider)
+            },
+            { provide: 'multiProvider', useValue: 1, multi: true },//we are able to get ARRAY of all provider insatnces with the same token and flag "multi: true"
+            { provide: 'multiProvider', useValue: 2, multi: true }
+        ], this.root);// this.root - parent injector
         return this._injector;
     }
 }
