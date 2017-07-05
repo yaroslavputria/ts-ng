@@ -55,6 +55,9 @@ export class CarComponent {
     providers: [
         { provide: 'a', useValue: 'a provider from bla-cmp' },
         { provide: forwardRef(() => 'b'), useValue: 'b provider with "forwardRef" from bla-cmp' }//callback in forwardRef returns token which will be created after registring this provider (there is string token just for example)
+    ],
+    viewProviders: [
+        { provide: 'c', useValue: 'there is no access from content children components' }//encapsulated from content children
     ]
 })
 export class BlaCmp {
