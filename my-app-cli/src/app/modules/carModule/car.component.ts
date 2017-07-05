@@ -70,3 +70,15 @@ export class BlaCmp {
 class BlaClass {
 
 }
+// instances that we can injected in component:
+//     - Injector
+//     - Compiler
+//     - Renderer
+//     - ElementRef
+//     - ViewContainer
+//     - TemplateRef
+//     - parent component (AppComponent for example)
+//     - changeDetectorRef
+//     - ApplicationRef
+//     - Document
+//     ...
