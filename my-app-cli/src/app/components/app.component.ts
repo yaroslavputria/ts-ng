@@ -16,8 +16,12 @@ export class AppComponent {
 
     showExamples: boolean = false;
 
-    ngOnInit() {
+    prop1;
+    prop2;
 
+    ngOnInit() {
+        this.prop1 = 'prop1';
+        this.prop2 = 'prop2';
     }
 
     title: string = 'Angular is here!';
@@ -56,5 +60,12 @@ export class AppComponent {
     mess = '';
 
     // blabla = 'blabalasd';
+
+
+
+    changeProps() {
+        this.prop1 += ' bla';
+        //this.prop2 += ' ko';
+    }
 
 }

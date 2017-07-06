@@ -29,8 +29,8 @@
     <car-cmp></car-cmp>
 
     <div style="border: 1px solid green; padding: 20px">
-        <h4>lifecycle hooks root cmp</h4>
-        <a-cmp></a-cmp>
+        <h4 (click)="changeProps()">lifecycle hooks root cmp</h4>
+        <a-cmp [p1]="prop1" [p2]="prop2"></a-cmp>
     </div>
 
 </main>

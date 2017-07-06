@@ -67,9 +67,6 @@ export class BlaCmp {
     }
 }
 
-class BlaClass {
-
-}
 // instances that we can injected in component:
 //     - Injector
 //     - Compiler
@@ -82,3 +79,14 @@ class BlaClass {
 //     - ApplicationRef
 //     - Document
 //     ...
+
+// (1:49:16 - 1:52:21)
+
+// 1. 3 modules: AppModule and 2 custom
+// 2. In every module register some items (objects) by the common token (multi: true)
+// 3. There are cmps in both modules
+// 4. Both components register this items and show them by ngFor in template
+// 5. In one component register the same items
+// } catch (e) {
+
+// }
