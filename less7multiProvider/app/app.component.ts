@@ -7,7 +7,6 @@ import { Component, Inject } from '@angular/core';
   styleUrls: ['app.component.css']
 })
 export class AppComponent {
-  name = 'Angular';
   constructor(@Inject('common-token') public items) {
 
   }
