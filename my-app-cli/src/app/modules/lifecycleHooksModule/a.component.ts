@@ -115,17 +115,19 @@ export class AComponent implements OnInit, OnChanges, DoCheck, AfterContentInit,
     selector: '[adir-spy]'
 })
 export class ADirective implements OnInit, OnDestroy {
-    constructor(private el: ElementRef) {
+    constructor(private el: ElementRef, public cd: ChangeDetectorRef) {
 
     }
     ngOnInit() {
         console.log(`adir-spy was inited on ${this.el.nativeElement}`);
         setTimeout(() => {
             this.el.nativeElement.removeAttribute('adir-spy');
+            this.cd.checkNoChanges();
         }, 3000);
     }
     ngOnDestroy() {
         console.log(`adir-spy was removed from ${this.el.nativeElement}`);
+        debugger;
     }
 }
 
