@@ -8,7 +8,7 @@ import { FormControl, Validators, NgModel, FormGroup, FormArray, NgForm, FormBui
     template: `
         <h4>B component is here!</h4>
         <h5>Reactive FormGroup</h5>
-        <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <form [formGroup]="reactiveFormGroup" (ngSubmit)="onSubmit(f)" #f="ngForm">
             <input type="text" formControlName="second"/> <!-- without input binding set as string -->
             <input type="text" [formControlName]="'first'"/> <!-- pass string in input binding -->
             <br/><button type="submit">Submit</button>
@@ -68,16 +68,16 @@ import { FormControl, Validators, NgModel, FormGroup, FormArray, NgForm, FormBui
 })
 export class BComponent implements AfterViewInit {
     //reactive form group
-    myFormGroup = new FormGroup({
+    reactiveFormGroup = new FormGroup({
         first: new FormControl('first form control in form group', [Validators.required]),
         second: new FormControl('second form control in form group', [Validators.maxLength(2)])
     });
     onSubmit(ngFormGroupDirective) {
-        console.log(ngFormGroupDirective.form === this.myFormGroup);// true
+        console.log(ngFormGroupDirective.form === this.reactiveFormGroup);// true
     }
 
     //Template driven form group
-    @ViewChild(NgForm) secondFormGroup; // it took second form becouse of: "... selector: 'form:not([ngNoForm]):not([formGroup]),ngForm,[ngForm]', ..."
+    @ViewChild(NgForm) templDrivenFormGroup; // it took second form becouse of: "... selector: 'form:not([ngNoForm]):not([formGroup]),ngForm,[ngForm]', ..."
 
     //reactive form array
     myFormArray = new FormArray([new FormControl(1), new FormControl(2)]);
@@ -107,18 +107,18 @@ export class BComponent implements AfterViewInit {
     user;
     
     constructor(private fb: FormBuilder) {
-        this.myFormGroup.valueChanges.subscribe(v => console.log('myFormGroup', v));
-        console.log(this.myFormGroup.value); // {first: "first form control in form group", second: "second form control in form group"}
+        this.reactiveFormGroup.valueChanges.subscribe(v => console.log('reactiveFormGroup', v));
+        console.log(this.reactiveFormGroup.value); // {first: "first form control in form group", second: "second form control in form group"}
         setTimeout(() => {
-            this.myFormGroup.setValue({first: 'new value1', second: 'new value22'});// updates whole form group, in there is no passed some control - throws error
-            console.log(this.myFormGroup.value);// {first: "new value1", second: "new value22"}
-            this.myFormGroup.patchValue({noControl: 'bla bla', second: 'blablabla'});// updates only existing controls without throwing errors if some control missed or added extra
-            console.log(this.myFormGroup.value);// {first: "new value1", second: "blablabla"}
+            this.reactiveFormGroup.setValue({first: 'new value1', second: 'new value22'});// updates whole form group, in there is no passed some control - throws error
+            console.log(this.reactiveFormGroup.value);// {first: "new value1", second: "new value22"}
+            this.reactiveFormGroup.patchValue({noControl: 'bla bla', second: 'blablabla'});// updates only existing controls without throwing errors if some control missed or added extra
+            console.log(this.reactiveFormGroup.value);// {first: "new value1", second: "blablabla"}
         }, 1000);
         setTimeout(() => {
-            console.log(this.myFormGroup.status);// INVALID - 'second' control has validator 'maxLength'
-            this.myFormGroup.reset({first: 'new value1'});
-            console.log(this.myFormGroup.pristine);//true - reset method sets formGroup and its children pristine=true
+            console.log(this.reactiveFormGroup.status);// INVALID - 'second' control has validator 'maxLength'
+            this.reactiveFormGroup.reset({first: 'new value1'});
+            console.log(this.reactiveFormGroup.pristine);//true - reset method sets formGroup and its children pristine=true
         }, 2000);
 
         setTimeout(() => {
@@ -136,10 +136,10 @@ export class BComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.secondFormGroup.valueChanges.subscribe(v => console.log('secondFormGroup', v));
-        this.secondFormGroup.statusChanges.subscribe(v => console.log('secondFormGroup status:', v));
+        this.templDrivenFormGroup.valueChanges.subscribe(v => console.log('templDrivenFormGroup', v));
+        this.templDrivenFormGroup.statusChanges.subscribe(v => console.log('templDrivenFormGroup status:', v));
         setTimeout(() => {
-            this.secondFormGroup.setValue({bla: 'its not so easy', ku: 'but angular is cool'});
+            this.templDrivenFormGroup.setValue({bla: 'its not so easy', ku: 'but angular is cool'});
         }, 3000);
 
         console.dir(this.nestedForm);

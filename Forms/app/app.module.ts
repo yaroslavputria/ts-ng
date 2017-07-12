@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AComponent } from './a.component';
 import { BComponent } from './b.component';
+import { CComponent } from './c.component';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { BComponent } from './b.component';
     declarations: [
         AppComponent,
         AComponent,
-        BComponent
+        BComponent,
+        CComponent
     ],
     bootstrap: [
         AppComponent

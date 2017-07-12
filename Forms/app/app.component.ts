@@ -8,5 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     name = 'Angular';
-    checkboxChecked = false;
+    cmps = [
+        {
+            name: 'Acomponent',
+            id: 1
+        },
+        {
+            name: 'Bcomponent',
+            id: 2
+        },
+        {
+            name: 'Ccomponent',
+            id: 3
+        }
+    ];
+    currentCmp = 3;
 }
