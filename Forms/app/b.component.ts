@@ -31,10 +31,12 @@ import { FormControl, Validators, NgModel, FormGroup, FormArray, NgForm, FormBui
 
         <h5>Nested template driven form</h5>
         <form #nestedForm="ngForm" style="border: 1px solid blue">
-            <input name="name" NgModel/>
+            <input name="name" ngModel/>
             <div ngModelGroup="account" style="border: 1px solid green">
-                <input name="email" ngModel/>
+                <!--<input name="email" ngModel/>-->
+                <input [ngModelOptions]="{name: 'email'}" ngModel/>
                 <input name="confirm" ngModel/>
+                <input ngModel [ngModelOptions]="{standalone: true}" #standaloneInput="ngModel" />
             </div>
         </form>
 
@@ -93,6 +95,7 @@ export class BComponent implements AfterViewInit {
     // ngModelGroup -> 'account'
     //              -> ngModel -> 'email'
     //              -> ngModel -> 'confirm'
+    @ViewChild('standaloneInput') standaloneInputModel: NgModel;
 
     //Reactive nested form group
     nestedReactiveForm = new FormGroup({
@@ -142,6 +145,14 @@ export class BComponent implements AfterViewInit {
             this.templDrivenFormGroup.setValue({bla: 'its not so easy', ku: 'but angular is cool'});
         }, 3000);
 
-        console.dir(this.nestedForm);
+        //Template driven nested form group
+        setTimeout(() => {
+            this.nestedForm.form.setValue({name: 'Bob', account: {email: 'bob@bla.com', confirm: 'bob@bla.com'}});
+            console.log(this.nestedForm);
+        }, 1000);
+        setTimeout(() => {
+            this.standaloneInputModel.control.setValue('independence is all');
+        }, 3000);
+        console.log(this.nestedForm);
     }
 }
