@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { AComponent } from './a.component';
 import { BComponent } from './b.component';
 import { CComponent } from './c.component';
+import { TaskComponent } from './task.component';
+import { DebounceDirective } from './debounce.directive';
 
 @NgModule({
     imports: [
@@ -18,7 +20,9 @@ import { CComponent } from './c.component';
         AppComponent,
         AComponent,
         BComponent,
-        CComponent
+        CComponent,
+        TaskComponent,
+        DebounceDirective
     ],
     bootstrap: [
         AppComponent

@@ -22,5 +22,5 @@ export class AppComponent {
             id: 3
         }
     ];
-    currentCmp = 2;
+    currentCmp = 3;
 }
