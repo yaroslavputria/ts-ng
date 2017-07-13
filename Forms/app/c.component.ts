@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, ViewChildren, OnInit } from '@angular/core';
 
 import { FormControl, Validators, NgModel, FormGroup, FormArray, NgForm } from '@angular/forms';
-import { TaskComponent } from './task.component';
 
 @Component({
     moduleId: module.id,
@@ -10,11 +9,6 @@ import { TaskComponent } from './task.component';
         <div>
             <h4>Debounce!</h4>
             <input [formControl]="myControl" debounce/>
-        </div>
-        <div style="border: 1px solid green">
-            <h4>Form homework:</h4>
-            <button (click)="saveChanges()">Save changes</button>
-            <taks-cmp *ngFor="let task of tasks; let i=index" [task]="task" (deletetask)="deleteTask(i)"></taks-cmp>
         </div>
     `,
     styles: [`
@@ -29,25 +23,6 @@ import { TaskComponent } from './task.component';
 })
 export class CComponent implements AfterViewInit, OnInit {
     myControl;
-    @ViewChildren(TaskComponent) taskCmps;
-    saveChanges() {
-        this.taskCmps.forEach(taskCmp => {
-            taskCmp.saveTaskDiscriptionToModel();
-        });
-    }
-    tasks = [
-        {
-            taskName: 'Initial Task',
-            description: 'some description for Initial task'
-        },
-        {
-            taskName: 'First Task',
-            description: 'some description for First task'
-        }
-    ];
-    deleteTask(i) {
-        this.tasks.splice(i, 1);
-    }
     constructor() {
     }
 

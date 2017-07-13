@@ -8,6 +8,7 @@ import { AComponent } from './a.component';
 import { BComponent } from './b.component';
 import { CComponent } from './c.component';
 import { TaskComponent } from './task.component';
+import { TaskListComponent } from './task-list.component';
 import { DebounceDirective } from './debounce.directive';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { DebounceDirective } from './debounce.directive';
         BComponent,
         CComponent,
         TaskComponent,
+        TaskListComponent,
         DebounceDirective
     ],
     bootstrap: [

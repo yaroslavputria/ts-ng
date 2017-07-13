@@ -7,8 +7,10 @@ import { FormControl, Validators, NgModel } from '@angular/forms';
     selector: 'taks-cmp',
     template: `
         <div style="border: 1px solid blue">
-            <label><b>{{task.taskName}}</b><input [formControl]="formCtrl" /></label><span *ngIf="formCtrl.dirty">dirty</span>
-            <button (click)="revertChanges()">Revert</button><span class="delete-btn" (click)="removeMe()">x</span>
+            <span class="delete-btn" (click)="removeMe()">x</span>
+            <h4>{{task.taskName}}</h4>
+            <textarea class="discription" [formControl]="formCtrl"></textarea><span *ngIf="formCtrl.dirty">dirty</span>
+            <br/><button (click)="revertChanges()">Revert</button>
         </div>
     `,
     styles: [`
@@ -22,6 +24,10 @@ import { FormControl, Validators, NgModel } from '@angular/forms';
         .delete-btn {
             cursor: pointer;
             color: red;
+            float: right;
+        }
+        .discription {
+            height: 65px;
         }
     `]
 })

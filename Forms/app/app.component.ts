@@ -18,9 +18,13 @@ export class AppComponent {
             id: 2
         },
         {
-            name: 'Ccomponent',
+            name: 'CComponent with debounce',
             id: 3
+        },
+        {
+            name: 'TaskListComponent',
+            id: 4
         }
     ];
-    currentCmp = 3;
+    currentCmp = 4;
 }
