@@ -74,3 +74,24 @@ const subscrb = customIntervalObservable.subscribe({
 setTimeout(() => {
     subscrb.unsubscribe();
 }, 3000);
+
+//////////////
+
+const ofObs = Rx.Observable.of(1, 2, 3, 4, 5);
+
+const producer = function(obs, lim) {
+    return function(newObs) {
+        const subscrb = obs.subscribe(v => {
+            for (let i = v; i <= lim; i++) {
+                newObs.next(i);
+            }
+        });
+        return function() {
+            subscrb.unsubscribe();
+        }
+    }
+}
+
+const customObservable = Rx.Observable.create(producer(ofObs, 5));
+
+const subscribtion = customObservable.subscribe(v => console.log(v));

@@ -26,7 +26,7 @@ unsbscrb.addEventListener('click', function handler() {
     unsbscrb.removeEventListener('click', handler);
 });
 
-// xhr produser
+// xhr produсer
 
 function xhrProducer(options) {
     return function(observer) {
@@ -35,12 +35,10 @@ function xhrProducer(options) {
         xhr.onload = function() {
             observer.next(this);
         };
-        xhr.onerror = function() {
-            throw new Error('catch me please');
+        xhr.onerror = function(err) {
+            observer.error(err);
         };
-        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
         xhr.send();
-        observer.complete();
         return function() {
             xhr.abort();
         };
