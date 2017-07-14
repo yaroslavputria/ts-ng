@@ -28,4 +28,32 @@ unsbscrb.addEventListener('click', function handler() {
 
 // xhr produser
 
-
+function xhrProducer(options) {
+    return function(observer) {
+        xhr = new XMLHttpRequest();
+        xhr.open(options.method, options.url, true);
+        xhr.onload = function() {
+            observer.next(this);
+        };
+        xhr.onerror = function() {
+            throw new Error('catch me please');
+        };
+        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        xhr.send();
+        observer.complete();
+        return function() {
+            xhr.abort();
+        };
+    };
+}
+const obserableXhrRequest = Rx.Observable.create(xhrProducer({method: 'GET', url: 'https://api.github.com/users/yaroslavputria/repos'}));
+const xhrSubscription = obserableXhrRequest.subscribe({
+    next(res) {
+        console.log(res);
+    },
+    complete() {},
+    error(err) {
+        console.log(err.message);
+    }
+});
+//xhrSubscription.unsubscribe();
