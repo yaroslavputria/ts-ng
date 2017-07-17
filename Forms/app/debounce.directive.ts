@@ -27,8 +27,7 @@ export class DebounceDirective implements ControlValueAccessor {
         this.renderer.setProperty(this.el.nativeElement, 'value', v);
     }
 
-    forObservable;
-
+    //forObservable;
     // debounceObservable = new Observable(observer => {
     //     let d = true;
     //     renderer.listen(el.nativeElement, 'input', (event) => {
@@ -41,19 +40,20 @@ export class DebounceDirective implements ControlValueAccessor {
     //         };
     //     });
     // });
-
     // subscribtion = this.debounceObservable.subscribe(v => {
     //     console.log('function was called');
     //     this.forObservable(v);
     // });
 
-    debounceObservableSubscrb = Observable.fromEvent(this.el.nativeElement, 'input')
-        .debounce(() => Observable.interval(1000))
-        .subscribe(v => this.forObservable(v.target.value));
+    
     
 
     registerOnChange(fn) {
-        this.forObservable = fn;
+        const debounceObservableSubscrb = Observable.fromEvent(this.el.nativeElement, 'input')
+            .debounce(() => Observable.interval(1000))
+            .subscribe(v => fn(v.target.value));
+
+        //this.forObservable = fn;
 
         // let d = true;
         // this.debounceChange = function(v) {
