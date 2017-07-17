@@ -1,6 +1,6 @@
 
 
-
+/*
 //const myLazyColdObservable = Rx.Observable.of('23');
 
 function ofProducer(...params) {
@@ -75,7 +75,7 @@ setTimeout(() => {
     subscrb.unsubscribe();
 }, 3000);
 
-//////////////
+*////////////
 
 const ofObs = Rx.Observable.of(1, 2, 3, 4, 5);
 
@@ -94,4 +94,53 @@ const producer = function(obs, lim) {
 
 const customObservable = Rx.Observable.create(producer(ofObs, 5));
 
-const subscribtion = customObservable.subscribe(v => console.log(v));
+const subscribtion = customObservable.subscribe(v => console.log(v));//1 2 3 4 5 2 3 4 5 3 4 5 4 5 5
+////////////// operators:
+/*
+ - Creation operators:
+    - of
+    - interval
+    ...
+
+- Transformation Operators:
+    - map
+    - scan
+    - mergeMap
+    - switchMap
+    ...
+
+- Combination Operators
+    - concat
+    - merge
+    ...
+
+- Filtering Operators
+    - filter
+    - skip
+    - debounce
+    ...
+
+- Multicasting Operators
+    - multicast
+    - publish
+    - share
+    ...
+*/
+
+const s = Rx.Observable
+    .interval(1000)
+    .filter(v => v <= 5 && v !== 0)
+    .mergeMap(x => {
+        return Rx.Observable.range(1, x)
+            .map(v => v);
+    })
+    .subscribe(v => console.log(v));
+
+
+
+
+
+
+
+
+
