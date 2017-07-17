@@ -28,7 +28,11 @@ export class CComponent implements AfterViewInit, OnInit {
 
     ngOnInit() {
         this.myControl = new FormControl('initial value');
+        this.myControl.valueChanges.subscribe(v => {
+            console.log(v);
+        });
     }
+    
     ngAfterViewInit() {
 
     }
