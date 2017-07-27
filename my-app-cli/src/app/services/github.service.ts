@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Request, RequestMethod, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 const rootEndpoint = 'https://api.github.com';
@@ -24,5 +24,39 @@ export class GithubService {
     //         .then(res => res.json().data as Hero)
     //         .catch(this.handleError);
     // }
+    getReposList(githubUserName) {
+
+        const reqSubscrb = this.http.request(new Request({
+                method: 'get',
+                url: ``,
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            }))
+            .subscribe(res => {
+
+            });
+
+        //-------------------------
+
+        const options = new RequestOptions({
+            method: 'get',
+            url: ``,
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: {},
+            //params: UrlSearchParams,
+            withCredentials: true
+        });
+
+        const reqSubscrb1 = this.http.request(new Request(options))
+            .subscribe((res: Response) => {
+                if (res.ok === true && res.statusText === 'OK') {
+                    debugger;
+                    res.json();
+                }
+            });
+    }
 
 }
