@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, ActivatedRouteSnapshot, ActivatedRouterState } from '@angular/router';
+import { ActivatedRoute, Params, ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
     selector: 'task-details-cmp',

@@ -25,7 +25,7 @@ import { Router, NavigationStart } from '@angular/router';
 export class AComponent {
     constructor(r: Router) {
         setTimeout(() => {
-            r.navigate([{outlets: {primary: 'tasks', details: '4', anotherdetails: '3'}}])
+            //r.navigate([{outlets: {primary: 'tasks', details: '4', anotherdetails: '3'}}])
         }, 3000);
         r.events.subscribe(e => {
             if (e instanceof NavigationStart) {

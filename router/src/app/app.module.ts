@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { AComponent } from './a.component';
 import { ADirective } from './a.directivet';
 
+import { NinjaDirective } from './ninja.directive';
+import { MyNgIfDirective } from './my-ng-if.directive';
+import { MyNgForDirective } from './my-ng-for.directive';
+
 import { TasksComponent } from './tasks.component';
 import { TaskComponent } from './task.component';
 import { TaskDetailsComponent } from './task-details.component';
@@ -44,6 +48,9 @@ import { MessageResolver } from './message-resolver';
         AppComponent,
         AComponent,
         ADirective,
+        NinjaDirective,
+        MyNgIfDirective,
+        MyNgForDirective,
         TasksComponent,
         TaskComponent,
         TaskDetailsComponent
