@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AComponent } from './a.component';
+import { BComponent } from './b.component';
 import { ADirective } from './a.directivet';
 
 import { NinjaDirective } from './ninja.directive';
@@ -45,9 +46,13 @@ import { MessageResolver } from './message-resolver';
         MessageResolver
 
     ],
+    entryComponents: [
+        BComponent
+    ],
     declarations: [
         AppComponent,
         AComponent,
+        BComponent,
         ADirective,
         NinjaDirective,
         MyNgIfDirective,

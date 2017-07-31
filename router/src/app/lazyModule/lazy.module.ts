@@ -1,14 +1,6 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-@Component({
-    selector: 'lazy-cmp',
-    template: `<span class="lazy">Lazy-lazy component</span>`,
-    styles: [`.lazy {font-size: 40px; color: red;}`]
-})
-export class LazyComponent {
-
-}
+import { LazyComponent } from './lazy.component';
 
 const ROUTES = [
     {
@@ -19,8 +11,9 @@ const ROUTES = [
 
 @NgModule({
     imports: [RouterModule.forChild(ROUTES)],
+    entryComponents: [LazyComponent],
     declarations: [LazyComponent]
 })
 export class LazyModule {
-
+    static components = [LazyComponent];
 }
