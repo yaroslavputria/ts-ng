@@ -10,7 +10,12 @@ export class NinjaDirective {
         onClick(e) {
             console.log(this.el);
             console.log(e);
-            this.parent.name = 'changed from ninja directive by HostListener click';
+            if (e.type === 'click') {
+                this.parent.name = 'changed from ninja directive by HostListener click';
+            } else {
+                this.parent.name = 'changed from ninja directive by HostListener mouseover';
+            }
+            
         }
 
     @HostListener('window:click')
@@ -23,7 +28,7 @@ export class NinjaDirective {
     constructor(private el: ElementRef, private renderer: Renderer2, private parent: AppComponent) {
         this.renderer.setStyle(this.el.nativeElement, 'border', '1px solid green');
         this.renderer.listen(this.el.nativeElement, 'click', (e) => {
-            this.parent.name = 'new update'; // if parent component had "changeDetection: ChangeDetectionStrategy.OnPush" we would have to trigger change detection manually
+            //this.parent.name = 'new update'; // if parent component had "changeDetection: ChangeDetectionStrategy.OnPush" we would have to trigger change detection manually
             console.log('click listener added by Renderer2');
         });
     }
