@@ -11,6 +11,7 @@ import { Router, NavigationStart } from '@angular/router';
             <li><a [routerLink]="[{outlets: {primary: 'tasks'}}]">Go to tasks!</a></li>
             <li><a routerLink="tasks/3">Task 3 in nested outlet</a></li>
             <li><a routerLink="tasks/4">Task 4 in nested outlet</a></li>
+            <li><a routerLink="lazy">Go to lazy loaded component</a></li>
 
             <li><a [routerLink]="[{outlets: {primary: 'tasks', details: '4'}}]">Task 4 in separate outlet</a></li>
 

@@ -4,7 +4,8 @@
   "description": "",
   "main": "app/main.js",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"json-server db.json --static . \" "
+    "start": "tsc && concurrently \"tsc -w\" \"json-server db.json --static . \" ",
+    "lazy": "tsc src/app/lazyModule/lazy.module.ts"
   },
   "author": "",
   "license": "ISC",

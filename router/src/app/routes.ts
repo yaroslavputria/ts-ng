@@ -28,5 +28,10 @@ export const ROUTES = [
         path: ':id',
         component: TaskDetailsComponent,
         outlet: 'anotherdetails'
+    },
+
+    {
+        path: 'lazy',
+        loadChildren: 'app/lazyModule/lazy.module.js#LazyModule'
     }
 ];
