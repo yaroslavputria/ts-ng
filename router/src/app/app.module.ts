@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AComponent } from './a.component';
 import { BComponent } from './b.component';
+import { CComponent } from './c.component';
 import { ADirective } from './a.directivet';
 
 import { NinjaDirective } from './ninja.directive';
@@ -38,6 +40,8 @@ import { MessageResolver } from './message-resolver';
 @NgModule({
     imports: [
         BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
         RouterModule.forRoot(ROUTES/*, {enableTracing: true}*/), // forChild
         //customModuleWithProviders
     ],
@@ -53,6 +57,7 @@ import { MessageResolver } from './message-resolver';
         AppComponent,
         AComponent,
         BComponent,
+        CComponent,
         ADirective,
         NinjaDirective,
         MyNgIfDirective,
@@ -65,4 +70,7 @@ import { MessageResolver } from './message-resolver';
     bootstrap: [AppComponent]
 })
 export class AppModule {
+    constructor(private i: Injector) {
+        console.dir(this.i);
+    }
 }

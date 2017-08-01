@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LazyComponent } from './lazy.component';
+import { LazyFormComponent } from './lazyform.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const ROUTES = [
     {
@@ -10,10 +12,10 @@ const ROUTES = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(ROUTES)],
-    entryComponents: [LazyComponent],
-    declarations: [LazyComponent]
+    imports: [FormsModule, ReactiveFormsModule, RouterModule.forChild(ROUTES)],
+    entryComponents: [LazyComponent, LazyFormComponent],
+    declarations: [LazyComponent, LazyFormComponent]
 })
 export class LazyModule {
-    static components = [LazyComponent];
+    static components = [LazyComponent, LazyFormComponent];
 }

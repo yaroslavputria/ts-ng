@@ -9,13 +9,14 @@ declare var System;
     template: `
         <h1>Hello {{name}}</h1>
         <span adir>A directive changes color to green</span>
+        <c-cmp></c-cmp>
         <a-comp></a-comp>
         <div ninja></div>
         <button (click)="toggleDiv()">Toggle that div!</button>
         <div *myNgIf="show; let tplbla=bla; let impls">Div with my ngIf directive! {{tplbla}} and {{impls}}</div>
         
         <div *ngIf="showDoubleDiv" class="bordered">
-            <double-div [divInnerElements]="els"></double-div>
+            <double-div [divInnerElements]="els" texts="some fucking text here(injected from custom attribute)!"></double-div>
         </div>
         
         <ul>
@@ -66,8 +67,10 @@ export class AppComponent {
             System.import('app/lazyModule/lazy.module.js').then((module) => {
                 const klass = module.LazyModule;
                 const factory = this.jit.compileModuleSync(klass);
-                const moduleRef = factory.create(this.injector);
+                const moduleRef = factory.create(this.injector);  // pass injector for module
                 const lazyCompFactory = moduleRef.componentFactoryResolver.resolveComponentFactory(klass.components[0]); // custom property to load cmp in lazy way too
+                // const componentRef = lazyCompFactory.create(); // pass injector for cmp
+                // this.vc.insert(componentRef);
                 this.vc.createComponent(lazyCompFactory);
             });
         }, 4000);
