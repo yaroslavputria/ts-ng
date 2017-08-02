@@ -1,4 +1,4 @@
-import { NgModule, Injector } from '@angular/core';
+import { NgModule, Injector, Compiler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,6 +37,15 @@ import { MessageResolver } from './message-resolver';
 //     providers: [isValid]
 // };
 
+import { JitCompilerFactory } from '@angular/compiler';
+
+export function createJitCompiler() {
+    return new JitCompilerFactory([{
+            useDebug: false,
+            useJit: true
+        }]).createCompiler();
+}
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -47,8 +56,8 @@ import { MessageResolver } from './message-resolver';
     ],
     providers: [
         {provide: APP_BASE_HREF, useValue: '/'},
-        MessageResolver
-
+        MessageResolver,
+        {provide: Compiler, useFactory: createJitCompiler}
     ],
     entryComponents: [
         BComponent

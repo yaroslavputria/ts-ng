@@ -89,6 +89,8 @@ export class CComponent {
     }
 
     @ViewChild('superDynamic', {read: ViewContainerRef}) vcForSuperDynamic;
+    
+    cmpRef = null;
 
     ngAfterViewInit() {
         System.import('app/lazyModule/lazy.module.js').then((module) => {
@@ -108,10 +110,16 @@ export class CComponent {
         this.jit.compileModuleAndAllComponentsAsync(tmpModule)
             .then((factories) => {
                 const f = factories.componentFactories[0];
-                const cmpRef = f.create(this.injector, [], null, this._m);
+                this.cmpRef = f.create(this.injector, [], null, this._m);
                 cmpRef.instance.name = 'dynamic';
                 this.vcForSuperDynamic.insert(cmpRef.hostView);
             })
+    }
+
+    ngOnDestroy() {
+        if(this.cmpRef) {
+            this.cmpRef.destroy();
+        }
     }
 
 }
