@@ -1,5 +1,8 @@
 import { Component, ViewContainerRef, ViewChild, ChangeDetectorRef, Compiler, Injector } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { SystemJsNgModuleLoader, NgModuleFactoryLoader } from '@angular/core';
+
+import { LazyFormComponent } from './lazyModule/lazyform.component';
 
 declare var System;
 
@@ -15,10 +18,16 @@ declare var System;
             <ng-container *ngComponentOutlet="ColorComponent"></ng-container>-->
         </div>
     `,
-    styles: ['']
+    styles: [''],
+    providers: [
+        {
+            provide: NgModuleFactoryLoader,
+            useClass: SystemJsNgModuleLoader
+        }
+    ]
 })
 export class CComponent {
-    constructor(private jit: Compiler, private injector: Injector) {
+    constructor(private jit: Compiler, private injector: Injector, private loader: NgModuleFactoryLoader) {
     }
 
     checkBox = new FormControl(true);
@@ -44,14 +53,21 @@ export class CComponent {
     }
     */
     importModuleAndCmp() {
-        System.import('app/lazyModule/lazy.module.js').then((module) => {
-            const klass = module.LazyModule;
-            const factory = this.jit.compileModuleSync(klass);
+        // System.import('app/lazyModule/lazy.module.js').then((module) => {
+        //     const klass = module.LazyModule;
+        //     const factory = this.jit.compileModuleSync(klass);
+        //     const moduleRef = factory.create(this.injector);
+        //     const lazyCompFactory = moduleRef.componentFactoryResolver.resolveComponentFactory(klass.components[1]);
+        //     const lazyComptRef = lazyCompFactory.create(this.injector);
+        //     this.view = lazyComptRef.hostView;
+        //     //this.view = this.vc.createComponent(lazyCompFactory).hostView;
+        // });
+
+        const factory = this.loader.load('app/lazyModule/lazy.module.js#LazyModule').then((factory) => {
             const moduleRef = factory.create(this.injector);
-            const lazyCompFactory = moduleRef.componentFactoryResolver.resolveComponentFactory(klass.components[1]);
+            const lazyCompFactory = moduleRef.componentFactoryResolver.resolveComponentFactory(LazyFormComponent);
             const lazyComptRef = lazyCompFactory.create(this.injector);
             this.view = lazyComptRef.hostView;
-            //this.view = this.vc.createComponent(lazyCompFactory).hostView;
         });
     }
 
@@ -65,9 +81,9 @@ export class CComponent {
             }
         } else {
             if (this.view === null) this.importModuleAndCmp();
-            setTimeout(() => { // because module imported asynchronously
+            setTimeout(() => { // because module imported asynchronously // but better way of course is promise chaining :)
                 this.vc.insert(this.view);
-            }, 0);
+            }, 100);
         }
     }
 
