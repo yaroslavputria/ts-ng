@@ -1,0 +1,19 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ts-learn.js",
+  "dependencies": {
+    "jspm": "^0.16.53",
+    "reflect-metadata": "^0.1.10"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "http-server": "^0.10.0"
+  },
+  "scripts": {
+    "start": "tsc && concurrently \"tsc -w\" \"http-server \" "
+  },
+  "author": "",
+  "license": "ISC"
+}

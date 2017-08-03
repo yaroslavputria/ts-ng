@@ -14,8 +14,8 @@ function* idMaker() {
 }
 const generateUniqId = (function(){
     let gen = idMaker();
-    return function() {
-        gen.next().value;
+    return function(): number {
+        return gen.next().value;
     };
 })();
 
@@ -375,7 +375,7 @@ class C {
 
 //Class Decorators
 
-function sealed(constructor: Function) {
+function sealed(constructor: Function) { // for example below - constructor === Greeter
     Object.seal(constructor);
     Object.seal(constructor.prototype);
 }
@@ -390,6 +390,39 @@ class Greeter {
         return "Hello, " + this.greeting;
     }
 }
+
+//------
+
+@chooseExtendsClass(true)
+class Person {
+  constructor(public name: string) {}
+}
+
+function chooseExtendsClass(condition: boolean) {
+    return (target: FunctionConstructor) => {
+        if (condition) {
+            return class Human extends target {
+                type: string;
+                constructor(n) {
+                    super(n);
+                    this.type = 'human';
+                }
+            }
+        } else {
+            return class Animal extends target {
+                type: string;
+                constructor(n) {
+                    super(n);
+                    this.type = 'animal';
+                }
+            }
+        }
+        
+    }
+}
+
+const h = new Person('John');
+
 
 //Method Decorators
 
