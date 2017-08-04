@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'b-cmp',
     template: `
         <div class="bordered">
+            <b>Pipes stuff:</b><br />
+            <label><input type="checkbox" [formControl]="dateFormatCondition"/>Full date</label><br />
+            <span>Now is <span style="color:red">{{todayDate | date:dateFormat | uppercase}}</span></span>
+            <p>{{paragraphContent | starsAbbreviat:paragraphMaxLength}}</p>
+        </div>
+        <div class="bordered">
+            <b>Structural directives stuff:</b><br />
             <ul> Heroes:
                 <li *ngFor="let hero of heroes; let i=index; let odd=odd; trackBy: trackById" [class.odd]="odd">
                     ({{i}}) {{hero.name}}
@@ -18,14 +26,26 @@ import { Component, OnInit } from '@angular/core';
                     <li [class.odd]="odd">({{i}}) {{hero.name}}</li>
                 </ng-template>
             </ul>
-        </div>
-        <div class="bordered">
-            <span *myUnless="opositeCond"></span>
+
+            <div class="bordered">
+                <span *myUnless="opositeCond"></span>
+            </div>
         </div>
     `,
     styleUrls: ['./b-cmp.component.css']
 })
 export class BCmpComponent implements OnInit {
+    todayDate = new Date();
+    dateFormatCondition = new FormControl(false);
+    get dateFormat() {
+        return this.dateFormatCondition.value ? 'fullDate' : 'shortDate';
+    }
+
+    paragraphContent = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis explicabo earum sapiente,
+        et enim, saepe itaque unde odio omnis alias magnam veniam doloremque repellat maiores quo temporibus mollitia delectus in.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos id aspernatur voluptas sapiente aut provident,
+        similique vitae, cupiditate adipisci modi veniam totam quibusdam voluptates, iste praesentium expedita odit nesciunt repellat?`;
+    paragraphMaxLength = 80;
     opositeCond = true;
     constructor() {
         setTimeout(() => {
