@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { AComponent } from './a.component';
 import { BCmpComponent } from './b-cmp/b-cmp.component';
 import { AdDirective } from './ad.directive';
+import { UnlessDirective } from './unless.directive';
 
 @NgModule({
     declarations: [
         AppComponent,
         AComponent,
         BCmpComponent,
-        AdDirective
+        AdDirective,
+        UnlessDirective
     ],
     imports: [
         BrowserModule

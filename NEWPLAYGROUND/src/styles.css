@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 .bordered {
     border: 1px solid black;
-    margin: 5px;
+    margin: 3px;
+    padding: 3px;
+}
+
+.highlighted {
+    background-color: yellow;
+}
+
+.odd {
+    background-color: grey;
 }

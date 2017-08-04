@@ -6,10 +6,11 @@ import { AComponent } from './a.component';
     template: `
         <div>
             <h2>Angular is here!</h2>
-            <!--<a-cmp [inputData]="someDataForAComp"></a-cmp>-->
-            <div class="for-banner">
+            <a-cmp [inputData]="someDataForAComp"></a-cmp>
+            <div class="for-banner" *ngIf="show">
                 <ng-container ad-host #vc></ng-container>
             </div>
+            <b-cmp></b-cmp>
         </div>
     `,
     styles: [`
@@ -21,7 +22,8 @@ import { AComponent } from './a.component';
     `]
 })
 export class AppComponent {
-    someDataForAComp: any = 5;
+    show = true;
+    someDataForAComp: any = 'added in AppComponent template';
 
     @ViewChild('vc', {read: ViewContainerRef}) vc;
 
@@ -37,7 +39,10 @@ export class AppComponent {
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver, private i: Injector) {
         setTimeout(() => {
-            this.someDataForAComp = 1;
+            this.someDataForAComp += ' updated';
         }, 1000);
+        setTimeout(() => {
+            //this.show = false;
+        }, 5000);
     };
 }
