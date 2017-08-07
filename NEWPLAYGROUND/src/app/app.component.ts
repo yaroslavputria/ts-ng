@@ -10,7 +10,7 @@ import { AComponent } from './a.component';
             <div class="for-banner" *ngIf="show">
                 <ng-container ad-host #vc></ng-container>
             </div>
-            <b-cmp></b-cmp>
+            <b-cmp (bla)="logIt($event)"></b-cmp>
         </div>
     `,
     styles: [`
@@ -35,6 +35,10 @@ export class AppComponent {
             this.vc.insert(componentRef.hostView);
         }, 0);
 
+    }
+
+    logIt(v) {
+        console.log(v, '(parent)');
     }
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver, private i: Injector) {

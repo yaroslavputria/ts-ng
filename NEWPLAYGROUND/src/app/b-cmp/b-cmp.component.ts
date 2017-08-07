@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -35,6 +35,7 @@ import { FormControl } from '@angular/forms';
     styleUrls: ['./b-cmp.component.css']
 })
 export class BCmpComponent implements OnInit {
+    @Output() bla = new EventEmitter();
     todayDate = new Date();
     dateFormatCondition = new FormControl(false);
     get dateFormat() {
@@ -50,7 +51,11 @@ export class BCmpComponent implements OnInit {
     constructor() {
         setTimeout(() => {
             this.opositeCond = false;
+            this.bla.emit('bla emitted!');
         }, 2000);
+        this.bla.subscribe(v => {
+            console.log(v, '(child)');
+        });
     }
 
     ngOnInit() {
