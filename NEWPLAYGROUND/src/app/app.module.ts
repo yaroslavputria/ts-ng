@@ -16,6 +16,8 @@ import { AdDirective } from './ad.directive';
 import { UnlessDirective } from './unless.directive';
 import { StarsAbbreviatPipe } from './starsabbreviat.pipe';
 
+import { ForbiddenNameDirective } from './forms-cmp/forbidden-name.directive';
+
 import { ROUTES } from './routes';
 
 @NgModule({
@@ -28,7 +30,8 @@ import { ROUTES } from './routes';
         UnlessDirective,
         StarsAbbreviatPipe,
         AnimationsComponent,
-        FormsComponent
+        FormsComponent,
+        ForbiddenNameDirective
     ],
     imports: [
         BrowserModule,

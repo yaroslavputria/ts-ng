@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { forbiddenNameValidator } from './forbidden-name.directive';
 
 class Hero {
     constructor(
@@ -13,10 +15,12 @@ class Hero {
     selector: 'forms-cmp',
     template: `
         <div class="bordered">
-            <input #box
+            <label>Just some input<input #box
                 (keyup.enter)="update(box.value)"
-                (blur)="update(box.value)">
-            <p>{{value}}</p>
+                (blur)="update(box.value)"></label>
+            <span>{{value}}</span>
+
+            <label>Control apart form below<input [formControl]="myControl" /></label>
 
             <div class="container">
                 <div [hidden]="submitted">
@@ -25,12 +29,13 @@ class Hero {
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name"
-                                required
+                                required minlength="1"
+                                forbiddenName="lol"
                                 [(ngModel)]="model.name" name="name"
                                 #name="ngModel">
                             <div [hidden]="name.valid || name.pristine"
                                 class="alert alert-danger">
-                                Name is required
+                                Name is required and shouldn't be 'lol'
                             </div>
                         </div>
 
@@ -81,6 +86,16 @@ class Hero {
     styleUrls: ['./css/bootstrap.min.css']
 })
 export class FormsComponent {
+
+    myControl = new FormControl('initila value', forbiddenNameValidator(/bla/));
+    ngAfterViewInit() {
+        console.log(this.myControl.valid);
+        setTimeout(() => {
+            this.myControl.setValue('bla');
+            console.log(this.myControl.valid);
+        }, 2000);
+    }
+
     value = '';
     update(v) { this.value = v; }
     powers = ['Really Smart', 'Super Flexible',
