@@ -9,6 +9,7 @@ import { MainComponent } from './main.component';
 import { AComponent } from './a.component';
 import { BCmpComponent } from './b-cmp/b-cmp.component';
 
+import { FormsComponent } from './forms-cmp/forms.component';
 import { AnimationsComponent } from './animations-cmp/aniamtions.component';
 
 import { AdDirective } from './ad.directive';
@@ -26,7 +27,8 @@ import { ROUTES } from './routes';
         AdDirective,
         UnlessDirective,
         StarsAbbreviatPipe,
-        AnimationsComponent
+        AnimationsComponent,
+        FormsComponent
     ],
     imports: [
         BrowserModule,

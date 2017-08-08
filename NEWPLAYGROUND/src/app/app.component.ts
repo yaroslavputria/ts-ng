@@ -7,6 +7,8 @@ import { AComponent } from './a.component';
         <div>
             <h2>Angular is here!</h2>
             <a [routerLink]="'animations'">Go to animations</a>
+            <br />
+            <a [routerLink]="'forms'">Go to forms stuff</a>
             <router-outlet></router-outlet>
         </div>
     `,
